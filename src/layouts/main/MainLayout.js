@@ -1,0 +1,61 @@
+import { Outlet } from 'react-router-dom';
+// @mui
+import { styled } from '@mui/material/styles';
+//
+import Header from './header';
+import Footer from './Footer';
+
+// ----------------------------------------------------------------------
+
+const APP_BAR_MOBILE = 64;
+const APP_BAR_DESKTOP = 92;
+
+const StyledRoot = styled('div')({
+  display: 'flex',
+  minHeight: '100%',
+  overflow: 'hidden',
+});
+
+const Main = styled('div')(({ theme }) => ({
+  flexGrow: 1,
+  overflow: 'auto',
+  minHeight: '100%',
+  paddingTop: APP_BAR_MOBILE + 24,
+  paddingBottom: theme.spacing(10),
+  backgroundColor: theme.palette.background.paper,
+  [theme.breakpoints.up('lg')]: {
+    paddingTop: APP_BAR_DESKTOP + 24,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+}));
+
+// ----------------------------------------------------------------------
+
+export default function DashboardLayout() {
+
+  const isLoggedIn = localStorage.getItem("fetch-account-infor");
+
+  const redirect = () => {
+    window.location.href = '/login';
+  }
+
+  return (
+    <>
+    { isLoggedIn ? 
+      <StyledRoot>
+        <Header />
+
+        <Main>
+          <Outlet />
+        </Main>
+
+        <Footer />
+
+      </StyledRoot> 
+    : redirect()
+    }
+    </>
+    
+  );
+}
