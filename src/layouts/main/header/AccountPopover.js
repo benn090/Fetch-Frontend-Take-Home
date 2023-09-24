@@ -61,7 +61,7 @@ export default function AccountPopover() {
     if (localStorage.getItem("fetch-account-infor")) {
       const accountInfo = JSON.parse(localStorage.getItem("fetch-account-infor"));
 
-      if(accountInfo.experation < Date.now()) {
+      if(accountInfo.expiration < Date.now()) {
         localStorage.removeItem("fetch-account-infor");
         navigate('/login');
       }
