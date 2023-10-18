@@ -34,7 +34,7 @@ export default function LoginForm() {
         account.setDisplayName(data.name);
         account.setEmail(data.email)
         const expirationTimeInMinutes = 50;
-        const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 100;
+        const expirationTimestamp = Date.now() + expirationTimeInMinutes * 60 * 1000;
         const itemToStore = { data, expiration: expirationTimestamp }
         localStorage.setItem("fetch-account-infor", JSON.stringify(itemToStore));
         
